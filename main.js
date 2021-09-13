@@ -159,7 +159,6 @@
 // }
 // console.log(add(1,1));
 
-
 // const addNums = (num1 = 3, num2 = 3) => num1 + num2;
 // const addNums2 = (num1 = 3, num2 = 4) => {
 //     return  num1 + num2;
@@ -170,7 +169,7 @@
 // const addNums3 = num1 => num1 + 5;
 // console.log(addNums3(5));
 
-//constructor function 
+//constructor function
 // function Person(firstName, lastName, dob){
 //     this.firstName = firstName;
 //     this.lastName = lastName;
@@ -178,7 +177,7 @@
 
 //     this.getFullName = function(){
 //         return `${this.firstName} ${this.lastName}`;
-    
+
 //     }
 // }
 
@@ -220,12 +219,48 @@
 // console.log(items);
 // items.forEach((item) => console.log(item));
 
-const ul = document.querySelector('.items');
+const ul = document.querySelector(".items");
 //ul.remove();
 //ul.lastElementChild.remove();
-ul.firstElementChild.textContent = "Hello";
-ul.children[1].innerText = "Archana";
-ul.lastElementChild.innerHTML = '<h1>Sachin</h1>';
+// ul.firstElementChild.textContent = "Hello";
+// ul.children[1].innerText = "Archana";
+// ul.lastElementChild.innerHTML = '<h1>Sachin</h1>';
 
-const btn = document.querySelector('.btn');
-btn.style.background = 'red';
+// const btn = document.querySelector('.btn');
+// btn.style.background = 'red';
+
+// const btn = document.querySelector('.btn');
+
+// btn.addEventListener('mouseout', (e) =>{
+//     e.preventDefault();
+//     //console.log(e.target.className);
+//     document.querySelector('#my-form').style.background = '#ccc';
+//     document.querySelector('body').classList.add('bg-dark');
+// });
+
+const myForm = document.querySelector("#my-form");
+const nameInput = document.querySelector("#name");
+const emailInput = document.querySelector("#email");
+const msg = document.querySelector(".msg");
+const userList = document.querySelector("#users");
+
+myForm.addEventListener("submit", onSubmit);
+
+function onSubmit(e) {
+  e.preventDefault();
+  //console.log(nameInput.value);
+  if (nameInput.value === "" || emailInput.value === "") {
+      msg.innerText = "Please enter name and email";
+      msg.classList.add('error');
+
+      setTimeout(() => msg.remove(), 3000);
+  }else{
+      const li = document.createElement('li');
+      li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`));
+      userList.appendChild(li);
+
+      //clear fields
+      nameInput.value = '';
+      emailInput.value = '';
+  }
+}
